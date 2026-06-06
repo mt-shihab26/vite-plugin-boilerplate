@@ -26,6 +26,14 @@
         "dev": "tsup --watch",
         "prepublishOnly": "bun run build"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mt-shihab26/vite-plugin-boilerplate.git"
+    },
+    "homepage": "https://github.com/mt-shihab26/vite-plugin-boilerplate#readme",
+    "bugs": {
+        "url": "https://github.com/mt-shihab26/vite-plugin-boilerplate/issues"
+    },
     "keywords": [
         "vite",
         "vite-plugin",
