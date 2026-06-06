@@ -70,20 +70,22 @@ viteBoilerplate({
 
 ## Generated templates
 
-**Page** (e.g. `pages/Home.tsx` when `watchDir: 'src'` and `pages: ['pages']`):
+**Page** (e.g. `pages/home.tsx` when `watchDir: 'src'` and `pages: ['pages']`):
 
 ```tsx
-const PageName = () => {
-    return <div></div>;
+const Home = () => {
+    return <div>Edit: `pages/home.tsx`</div>;
 };
 
-export default PageName;
+export default Home;
 ```
 
 **Component** (everything else inside `watchDir`):
 
+file name `components/my-button.tsx`
+
 ```tsx
-export const ComponentName = () => {
-    return <div></div>;
+export const MyButton = () => {
+    return <div>Edit: `components/my-button.tsx`</div>;
 };
 ```
