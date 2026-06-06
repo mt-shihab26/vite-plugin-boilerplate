@@ -26,14 +26,12 @@ export const pageTemplate = (name: string): string =>
 
 export const componentTemplate = (name: string): string =>
     [
-        `const ${name} = () => {`,
+        `export const ${name} = () => {`,
         `    return (`,
         `        <div>`,
         `            `,
         `        </div>`,
         `    );`,
         `};`,
-        ``,
-        `export { ${name} };`,
         ``,
     ].join('\n');

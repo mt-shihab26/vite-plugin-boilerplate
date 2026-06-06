@@ -48,8 +48,7 @@ viteBoilerplate({
     // Base directory to watch (required)
     watchDir: 'src',
 
-    // Subdir(s) relative to watchDir treated as pages — default export.
-    // Accepts a string or array of strings. Omit for named exports only.
+    // Subdir(s) relative to watchDir treated as pages — default export. Accepts a string or string[]. Omit for named exports only.
     pages: 'pages', // or pages: ['pages', 'views']
 
     // File extensions to watch. Default: ['.tsx', '.jsx']
@@ -84,13 +83,7 @@ export default PageName;
 **Component** (everything else inside `watchDir`):
 
 ```tsx
-const ComponentName = () => {
+export const ComponentName = () => {
     return <div></div>;
 };
-
-export { ComponentName };
 ```
-
-## License
-
-MIT

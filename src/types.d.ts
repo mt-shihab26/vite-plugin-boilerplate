@@ -5,9 +5,7 @@ export type VitePluginBoilerplateOptions = {
     watchDir: string;
 
     /**
-     * Subdirectory or subdirectories (relative to watchDir) treated as pages — generates a default export.
-     * Files inside watchDir that don't match any page path get a named export.
-     * If not provided, all files get a named export.
+     * Subdir(s) relative to watchDir for pages (default export). Everything else gets a named export.
      */
     pages?: string | string[];
 
