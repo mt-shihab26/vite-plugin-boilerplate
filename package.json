@@ -1,7 +1,7 @@
 {
     "type": "module",
     "name": "vite-plugin-boilerplate",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "A Vite plugin that automatically writes component boilerplate when you create a new .tsx, .jsx, or .vue file.",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",

@@ -6,7 +6,7 @@
 [![license](https://img.shields.io/npm/l/vite-plugin-boilerplate?style=flat-square)](./LICENSE)
 [![types](https://img.shields.io/npm/types/vite-plugin-boilerplate?style=flat-square)](https://www.npmjs.com/package/vite-plugin-boilerplate)
 
-Automatically writes component boilerplate when you create a new `.tsx`, `.jsx`, or `.vue` file.
+A Vite plugin that automatically writes component boilerplate when you create a new `.tsx`, `.jsx`, or `.vue` file.
 
 ## Install
 
