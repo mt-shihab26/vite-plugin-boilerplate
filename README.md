@@ -28,10 +28,10 @@ export default defineConfig({
 });
 ```
 
-When you create a new empty `.tsx` or `.jsx` file, the plugin writes a component stub based on the file path:
+When you create a new empty `.tsx` or `.jsx` file inside `watchDir`, the plugin writes a component stub:
 
-- Files inside a `pages/` directory get a **default export**
-- All other files get a **named export**
+- Files matching a **`pages`** path get a **default export** (checked first)
+- Files matching a **`components`** path get a **named export**
 
 The component name is derived from the filename in PascalCase. For `index` files, the parent directory name is used instead.
 
@@ -39,35 +39,40 @@ The component name is derived from the filename in PascalCase. For `index` files
 
 ```ts
 viteBoilerplate({
+    // Base directory to watch. Default: 'src'
+    watchDir: 'src',
+
+    // Paths treated as pages — default export. Default: ['src/pages']
+    pages: ['src/pages', 'src/views'],
+
+    // Paths treated as components — named export. Default: ['src']
+    components: ['src'],
+
     // File extensions to watch. Default: ['.tsx', '.jsx']
     extensions: ['.tsx', '.jsx'],
 
     // Paths to ignore. Supports string (substring), RegExp, or predicate.
     ignore: ['node_modules', /\.stories\./, (filePath) => filePath.includes('__mocks__')],
 
-    // Rules evaluated in order — first match wins.
-    rules: [
-        {
-            match: /\/pages\//, // string, RegExp, or (filePath) => boolean
-            template: (name) => `const ${name} = () => {\n    return <div />;\n};\n\nexport default ${name};\n`,
-        },
-    ],
-
     // Custom component name derivation
     getComponentName: (filePath) => 'MyComponent',
 });
 ```
 
-### `BoilerplateRule`
+### Options reference
 
-| Field      | Type                                            | Description                        |
-| ---------- | ----------------------------------------------- | ---------------------------------- |
-| `match`    | `string \| RegExp \| (filePath) => boolean`     | Matches against the full file path |
-| `template` | `string \| (componentName, filePath) => string` | Content written to the new file    |
+| Option             | Type                                                    | Default            | Description                                             |
+| ------------------ | ------------------------------------------------------- | ------------------ | ------------------------------------------------------- |
+| `watchDir`         | `string`                                                | `'src'`            | Base directory — files outside it are ignored           |
+| `pages`            | `string[]`                                              | `['src/pages']`    | Paths matched as pages (default export). Checked first. |
+| `components`       | `string[]`                                              | `['src']`          | Paths matched as components (named export)              |
+| `extensions`       | `string[]`                                              | `['.tsx', '.jsx']` | File extensions that trigger boilerplate generation     |
+| `ignore`           | `(string \| RegExp \| (filePath: string) => boolean)[]` | `[]`               | Paths to skip                                           |
+| `getComponentName` | `(filePath: string) => string`                          | PascalCase         | Override component name derivation                      |
 
-## Default templates
+## Generated templates
 
-**`pages/` files:**
+**Page** (`src/pages/**`):
 
 ```tsx
 const PageName = () => {
@@ -77,7 +82,7 @@ const PageName = () => {
 export default PageName;
 ```
 
-**All other files:**
+**Component** (`src/**`):
 
 ```tsx
 const ComponentName = () => {

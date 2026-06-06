@@ -1,6 +1,8 @@
 import path from 'path';
 
-import type { BoilerplateRule } from './types';
+export const defaultWatchDir = 'src';
+export const defaultPages = ['src/pages'];
+export const defaultComponents = ['src'];
 
 export const defaultComponentName = (filePath: string): string => {
     const fileName = path.basename(filePath, path.extname(filePath));
@@ -12,37 +14,30 @@ export const defaultComponentName = (filePath: string): string => {
         .join('');
 };
 
-export const defaultRules: BoilerplateRule[] = [
-    {
-        match: /\/pages\//,
-        template: (name) =>
-            [
-                `const ${name} = () => {`,
-                `    return (`,
-                `        <div>`,
-                `            `,
-                `        </div>`,
-                `    );`,
-                `};`,
-                ``,
-                `export default ${name};`,
-                ``,
-            ].join('\n'),
-    },
-    {
-        match: () => true,
-        template: (name) =>
-            [
-                `const ${name} = () => {`,
-                `    return (`,
-                `        <div>`,
-                `            `,
-                `        </div>`,
-                `    );`,
-                `};`,
-                ``,
-                `export { ${name} };`,
-                ``,
-            ].join('\n'),
-    },
-];
+export const pageTemplate = (name: string): string =>
+    [
+        `const ${name} = () => {`,
+        `    return (`,
+        `        <div>`,
+        `            `,
+        `        </div>`,
+        `    );`,
+        `};`,
+        ``,
+        `export default ${name};`,
+        ``,
+    ].join('\n');
+
+export const componentTemplate = (name: string): string =>
+    [
+        `const ${name} = () => {`,
+        `    return (`,
+        `        <div>`,
+        `            `,
+        `        </div>`,
+        `    );`,
+        `};`,
+        ``,
+        `export { ${name} };`,
+        ``,
+    ].join('\n');
