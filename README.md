@@ -1,8 +1,14 @@
 # vite-plugin-boilerplate
 
 [![npm version](https://img.shields.io/npm/v/vite-plugin-boilerplate?style=flat-square)](https://www.npmjs.com/package/vite-plugin-boilerplate)
-[![npm downloads](https://img.shields.io/npm/dm/vite-plugin-boilerplate?style=flat-square)](https://www.npmjs.com/package/vite-plugin-boilerplate)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/vite-plugin-boilerplate?style=flat-square)](https://bundlephobia.com/package/vite-plugin-boilerplate)
+[![license](https://img.shields.io/npm/l/vite-plugin-boilerplate?style=flat-square)](./LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-typed-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![vite peer](https://img.shields.io/badge/vite-%3E%3D4.0-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![GitHub stars](https://img.shields.io/github/stars/mt-shihab26/vite-plugin-boilerplate?style=flat-square)](https://github.com/mt-shihab26/vite-plugin-boilerplate/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/mt-shihab26/vite-plugin-boilerplate?style=flat-square)](https://github.com/mt-shihab26/vite-plugin-boilerplate/issues)
+[![GitHub last commit](https://img.shields.io/github/last-commit/mt-shihab26/vite-plugin-boilerplate?style=flat-square)](https://github.com/mt-shihab26/vite-plugin-boilerplate/commits/main)
+[![npmx](https://img.shields.io/badge/npmx-vite--plugin--boilerplate-blue?style=flat-square)](https://npmx.dev/package/vite-plugin-boilerplate)
 
 A Vite plugin that automatically writes component boilerplate when you create a new `.tsx`, `.jsx`, or `.vue` file.
 
