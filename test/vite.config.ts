@@ -1,8 +1,14 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import { boilerplate } from 'vite-plugin-boilerplate';
 
-// https://vite.dev/config/
+import react from '@vitejs/plugin-react';
+
 export default defineConfig({
-    plugins: [react(), viteBoilerplate({ watchDir: 'src' })],
+    plugins: [
+        react(),
+        boilerplate({
+            watchDir: 'src',
+            pages: 'pages',
+        }),
+    ],
 });
