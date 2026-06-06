@@ -41,7 +41,8 @@
         "build": "tsup",
         "dev": "tsup --watch",
         "test": "vitest run",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "release": "npm version patch && npm publish"
     },
     "peerDependencies": {
         "vite": ">=4.0.0"
