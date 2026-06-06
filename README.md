@@ -73,24 +73,26 @@ viteBoilerplate({
 
 **`pages/` files:**
 ```tsx
-export default function PageName() {
+const PageName = () => {
     return (
         <div>
             
         </div>
     );
-}
+};
+
+export default PageName;
 ```
 
 **All other files:**
 ```tsx
-function ComponentName() {
+const ComponentName = () => {
     return (
         <div>
             
         </div>
     );
-}
+};
 
 export { ComponentName };
 ```
