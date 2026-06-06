@@ -37,9 +37,7 @@ export const viteBoilerplate = (options: VitePluginBoilerplateOptions): Plugin =
                     if (stats.size > 0) return;
 
                     const name = defaultComponentName(filePath);
-                    const relPath = path
-                        .relative(path.join(root, watchDir), filePath)
-                        .replace(/\\/g, '/');
+                    const relPath = path.relative(root, filePath).replace(/\\/g, '/');
                     const template =
                         resolvedPages.length > 0 && matchesPaths(filePath, resolvedPages)
                             ? pageTemplate(name, relPath)
