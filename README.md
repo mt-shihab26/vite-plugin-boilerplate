@@ -5,6 +5,7 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/vite-plugin-boilerplate?style=flat-square)](https://bundlephobia.com/package/vite-plugin-boilerplate)
 [![license](https://img.shields.io/npm/l/vite-plugin-boilerplate?style=flat-square)](./LICENSE)
 [![types](https://img.shields.io/npm/types/vite-plugin-boilerplate?style=flat-square)](https://www.npmjs.com/package/vite-plugin-boilerplate)
+[![npmx](https://img.shields.io/badge/npmx-vite--plugin--boilerplate-blue?style=flat-square)](https://npmx.dev/package/vite-plugin-boilerplate)
 
 A Vite plugin that automatically generates React component boilerplate when you create a new `.tsx` or `.jsx` file.
 
