@@ -42,33 +42,29 @@ viteBoilerplate({
     // Base directory to watch. Default: 'src'
     watchDir: 'src',
 
-    // Paths treated as pages — default export. Default: ['src/pages']
-    pages: ['src/pages', 'src/views'],
-
     // Paths treated as components — named export. Default: ['src']
     components: ['src'],
+
+    // Paths treated as pages — default export. Default: ['src/pages']
+    pages: ['src/pages', 'src/views'],
 
     // File extensions to watch. Default: ['.tsx', '.jsx']
     extensions: ['.tsx', '.jsx'],
 
     // Paths to ignore. Supports string (substring), RegExp, or predicate.
     ignore: ['node_modules', /\.stories\./, (filePath) => filePath.includes('__mocks__')],
-
-    // Custom component name derivation
-    getComponentName: (filePath) => 'MyComponent',
 });
 ```
 
 ### Options reference
 
-| Option             | Type                                                    | Default            | Description                                             |
-| ------------------ | ------------------------------------------------------- | ------------------ | ------------------------------------------------------- |
-| `watchDir`         | `string`                                                | `'src'`            | Base directory — files outside it are ignored           |
-| `pages`            | `string[]`                                              | `['src/pages']`    | Paths matched as pages (default export). Checked first. |
-| `components`       | `string[]`                                              | `['src']`          | Paths matched as components (named export)              |
-| `extensions`       | `string[]`                                              | `['.tsx', '.jsx']` | File extensions that trigger boilerplate generation     |
-| `ignore`           | `(string \| RegExp \| (filePath: string) => boolean)[]` | `[]`               | Paths to skip                                           |
-| `getComponentName` | `(filePath: string) => string`                          | PascalCase         | Override component name derivation                      |
+| Option       | Type                                                    | Default            | Description                                             |
+| ------------ | ------------------------------------------------------- | ------------------ | ------------------------------------------------------- |
+| `watchDir`   | `string`                                                | `'src'`            | Base directory — files outside it are ignored           |
+| `pages`      | `string[]`                                              | `['src/pages']`    | Paths matched as pages (default export). Checked first. |
+| `components` | `string[]`                                              | `['src']`          | Paths matched as components (named export)              |
+| `extensions` | `string[]`                                              | `['.tsx', '.jsx']` | File extensions that trigger boilerplate generation     |
+| `ignore`     | `(string \| RegExp \| (filePath: string) => boolean)[]` | `[]`               | Paths to skip                                           |
 
 ## Generated templates
 

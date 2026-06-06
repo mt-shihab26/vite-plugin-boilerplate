@@ -22,7 +22,6 @@ export const viteBoilerplate = (options: VitePluginBoilerplateOptions = {}): Plu
         components = defaultComponents,
         extensions = ['.tsx', '.jsx'],
         ignore = [],
-        getComponentName = defaultComponentName,
     } = options;
 
     const extPattern = new RegExp(`(${extensions.map((e) => e.replace('.', '\\.')).join('|')})$`);
@@ -39,7 +38,7 @@ export const viteBoilerplate = (options: VitePluginBoilerplateOptions = {}): Plu
                     const stats = fs.statSync(filePath);
                     if (stats.size > 0) return;
 
-                    const name = getComponentName(filePath);
+                    const name = defaultComponentName(filePath);
 
                     if (matchesPaths(filePath, pages)) {
                         fs.writeFileSync(filePath, pageTemplate(name), 'utf-8');

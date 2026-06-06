@@ -26,10 +26,4 @@ export type VitePluginBoilerplateOptions = {
      * Paths to ignore. Supports strings (substring match), RegExp, or predicate functions.
      */
     ignore?: (string | RegExp | ((filePath: string) => boolean))[];
-
-    /**
-     * Derive the React component name from a file path.
-     * Defaults to PascalCase of the filename; index files use the parent directory name.
-     */
-    getComponentName?: (filePath: string) => string;
 };
