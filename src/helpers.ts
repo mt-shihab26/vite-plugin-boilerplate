@@ -25,7 +25,11 @@ export const selectTemplate = (
         : componentTemplate(name, relPath);
 };
 
-export const writeBoilerplate = (filePath: string, relPath: string, resolvedPages: string[]): void => {
+export const writeBoilerplate = (
+    filePath: string,
+    relPath: string,
+    resolvedPages: string[],
+): void => {
     try {
         const stats = fs.statSync(filePath);
         if (stats.size > 0) return;

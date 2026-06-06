@@ -8,9 +8,9 @@ import { buildExtPattern, resolvePages, shouldSkip, writeBoilerplate } from './h
 import { readGitignorePatterns } from './utils';
 
 export const boilerplate = (options: TOptions): Plugin => {
-    const { watchDir, pages, extensions = ['.tsx', '.jsx'], ignore = [] } = options;
+    const { watchDir, pages, ignore = [] } = options;
 
-    const extPattern = buildExtPattern(extensions);
+    const extPattern = buildExtPattern(['.tsx', '.jsx', '.vue']);
     const resolvedPages = resolvePages(watchDir, pages);
 
     let gitignorePatterns: string[] = [];

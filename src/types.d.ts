@@ -10,11 +10,6 @@ export type TOptions = {
     pages?: string | string[];
 
     /**
-     * File extensions to watch. Defaults to ['.tsx', '.jsx'].
-     */
-    extensions?: string[];
-
-    /**
      * Paths to ignore. Supports strings (substring match), RegExp, or predicate functions.
      */
     ignore?: (string | RegExp | ((filePath: string) => boolean))[];
