@@ -1,8 +1,8 @@
 {
+    "type": "module",
     "name": "vite-plugin-boilerplate",
     "version": "0.2.0",
-    "description": "A Vite plugin that automatically generates React component boilerplate when you create a new .tsx or .jsx file.",
-    "type": "module",
+    "description": "A Vite plugin that automatically writes component boilerplate when you create a new .tsx, .jsx, or .vue file.",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -21,13 +21,6 @@
     "files": [
         "dist"
     ],
-    "scripts": {
-        "prepublishOnly": "bun run build",
-        "build": "tsup",
-        "dev": "tsup --watch",
-        "test": "vitest run",
-        "format": "prettier --write ."
-    },
     "repository": {
         "type": "git",
         "url": "https://github.com/mt-shihab26/vite-plugin-boilerplate.git"
@@ -40,10 +33,16 @@
         "vite",
         "vite-plugin",
         "react",
-        "boilerplate",
-        "jsx",
-        "tsx"
+        "vue",
+        "scaffold"
     ],
+    "scripts": {
+        "prepublishOnly": "bun run build",
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "test": "vitest run",
+        "format": "prettier --write ."
+    },
     "peerDependencies": {
         "vite": ">=4.0.0"
     },
