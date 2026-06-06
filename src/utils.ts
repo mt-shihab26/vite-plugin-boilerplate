@@ -4,12 +4,12 @@ export const matchesRule = (rule: BoilerplateRule, filePath: string): boolean =>
     const { match } = rule;
 
     if (typeof match === 'string') {
-return filePath.includes(match);
-    } 
+        return filePath.includes(match);
+    }
 
     if (match instanceof RegExp) {
-return match.test(filePath);
-    } 
+        return match.test(filePath);
+    }
 
     return match(filePath);
 };
@@ -26,11 +26,10 @@ export const applyTemplate = (
 export const isIgnored = (
     filePath: string,
     ignore: (string | RegExp | ((filePath: string) => boolean))[],
-): boolean =>
-    {
+): boolean => {
     return ignore.some((pattern) => {
         if (typeof pattern === 'string') return filePath.includes(pattern);
         if (pattern instanceof RegExp) return pattern.test(filePath);
         return pattern(filePath);
-    })
+    });
 };

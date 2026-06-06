@@ -16,9 +16,7 @@ export const viteBoilerplate = (options: VitePluginBoilerplateOptions = {}): Plu
         getComponentName = defaultComponentName,
     } = options;
 
-    const extPattern = new RegExp(
-        `(${extensions.map((e) => e.replace('.', '\\.')).join('|')})$`,
-    );
+    const extPattern = new RegExp(`(${extensions.map((e) => e.replace('.', '\\.')).join('|')})$`);
 
     return {
         name: 'vite-boilerplate',
@@ -37,7 +35,11 @@ export const viteBoilerplate = (options: VitePluginBoilerplateOptions = {}): Plu
 
                     if (!rule) return;
 
-                    fs.writeFileSync(filePath, applyTemplate(rule, componentName, filePath), 'utf-8');
+                    fs.writeFileSync(
+                        filePath,
+                        applyTemplate(rule, componentName, filePath),
+                        'utf-8',
+                    );
                 } catch {
                     // file may not be accessible yet — ignore
                 }

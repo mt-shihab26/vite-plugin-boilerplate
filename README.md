@@ -24,7 +24,7 @@ import { defineConfig } from 'vite';
 import { viteBoilerplate } from 'vite-plugin-boilerplate';
 
 export default defineConfig({
-  plugins: [viteBoilerplate()],
+    plugins: [viteBoilerplate()],
 });
 ```
 
@@ -39,59 +39,49 @@ The component name is derived from the filename in PascalCase. For `index` files
 
 ```ts
 viteBoilerplate({
-  // File extensions to watch. Default: ['.tsx', '.jsx']
-  extensions: ['.tsx', '.jsx'],
+    // File extensions to watch. Default: ['.tsx', '.jsx']
+    extensions: ['.tsx', '.jsx'],
 
-  // Paths to ignore. Supports string (substring), RegExp, or predicate.
-  ignore: [
-    'node_modules',
-    /\.stories\./,
-    (filePath) => filePath.includes('__mocks__'),
-  ],
+    // Paths to ignore. Supports string (substring), RegExp, or predicate.
+    ignore: ['node_modules', /\.stories\./, (filePath) => filePath.includes('__mocks__')],
 
-  // Rules evaluated in order — first match wins.
-  rules: [
-    {
-      match: /\/pages\//,         // string, RegExp, or (filePath) => boolean
-      template: (name) => `export default function ${name}() {\n  return <div />;\n}\n`,
-    },
-  ],
+    // Rules evaluated in order — first match wins.
+    rules: [
+        {
+            match: /\/pages\//, // string, RegExp, or (filePath) => boolean
+            template: (name) => `const ${name} = () => {\n    return <div />;\n};\n\nexport default ${name};\n`,
+        },
+    ],
 
-  // Custom component name derivation
-  getComponentName: (filePath) => 'MyComponent',
-})
+    // Custom component name derivation
+    getComponentName: (filePath) => 'MyComponent',
+});
 ```
 
 ### `BoilerplateRule`
 
-| Field | Type | Description |
-|---|---|---|
-| `match` | `string \| RegExp \| (filePath) => boolean` | Matches against the full file path |
-| `template` | `string \| (componentName, filePath) => string` | Content written to the new file |
+| Field      | Type                                            | Description                        |
+| ---------- | ----------------------------------------------- | ---------------------------------- |
+| `match`    | `string \| RegExp \| (filePath) => boolean`     | Matches against the full file path |
+| `template` | `string \| (componentName, filePath) => string` | Content written to the new file    |
 
 ## Default templates
 
 **`pages/` files:**
+
 ```tsx
 const PageName = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+    return <div></div>;
 };
 
 export default PageName;
 ```
 
 **All other files:**
+
 ```tsx
 const ComponentName = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+    return <div></div>;
 };
 
 export { ComponentName };

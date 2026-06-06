@@ -22,9 +22,10 @@
         "dist"
     ],
     "scripts": {
+        "prepublishOnly": "bun run build",
         "build": "tsup",
         "dev": "tsup --watch",
-        "prepublishOnly": "bun run build"
+        "format": "prettier --write ."
     },
     "repository": {
         "type": "git",
@@ -47,6 +48,7 @@
     },
     "devDependencies": {
         "@types/node": "^25.9.2",
+        "prettier": "^3.8.3",
         "tsup": "^8.0.0",
         "typescript": "^5.0.0",
         "vite": "^6.0.0"
