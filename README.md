@@ -80,9 +80,7 @@ const Home = () => {
 export default Home;
 ```
 
-**Component** (everything else inside `watchDir`):
-
-file name `components/my-button.tsx`
+**Component** (e.g. `components/my-button.tsx` when `watchDir: 'src'`):
 
 ```tsx
 export const MyButton = () => {

@@ -10,28 +10,20 @@ export const defaultComponentName = (filePath: string): string => {
         .join('');
 };
 
-export const pageTemplate = (name: string): string =>
+export const pageTemplate = (name: string, relPath: string): string =>
     [
         `const ${name} = () => {`,
-        `    return (`,
-        `        <div>`,
-        `            `,
-        `        </div>`,
-        `    );`,
+        `    return <div>Edit: \`${relPath}\`</div>;`,
         `};`,
         ``,
         `export default ${name};`,
         ``,
     ].join('\n');
 
-export const componentTemplate = (name: string): string =>
+export const componentTemplate = (name: string, relPath: string): string =>
     [
         `export const ${name} = () => {`,
-        `    return (`,
-        `        <div>`,
-        `            `,
-        `        </div>`,
-        `    );`,
+        `    return <div>Edit: \`${relPath}\`</div>;`,
         `};`,
         ``,
     ].join('\n');
