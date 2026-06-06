@@ -12,7 +12,11 @@ A Vite plugin that automatically generates React component boilerplate when you 
 
 ```bash
 npm install -D vite-plugin-boilerplate
-# or
+```
+
+or
+
+```bash
 bun add -D vite-plugin-boilerplate
 ```
 
@@ -30,8 +34,10 @@ export default defineConfig({
 
 When you create a new empty `.tsx` or `.jsx` file inside `watchDir`, the plugin writes a component stub:
 
-- Files matching a **`pages`** path get a **default export**
+- Files matching a **`pages`** path (relative to `watchDir`) get a **default export**
 - All other files inside `watchDir` get a **named export**
+- If `pages` is not set, every file gets a **named export**
+- Paths listed in `.gitignore` are automatically skipped
 
 The component name is derived from the filename in PascalCase. For `index` files, the parent directory name is used instead.
 
@@ -42,9 +48,8 @@ viteBoilerplate({
     // Base directory to watch. Default: 'src'
     watchDir: 'src',
 
-    // Paths treated as pages — default export. Default: ['src/pages']
-    // All other files inside watchDir get a named export automatically.
-    pages: ['src/pages', 'src/views'],
+    // Subdirectories relative to watchDir treated as pages — default export.
+    pages: ['pages'],
 
     // File extensions to watch. Default: ['.tsx', '.jsx']
     extensions: ['.tsx', '.jsx'],
@@ -56,16 +61,16 @@ viteBoilerplate({
 
 ### Options reference
 
-| Option       | Type                                                    | Default            | Description                                                                                 |
-| ------------ | ------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------- |
-| `watchDir`   | `string`                                                | `'src'`            | Base directory — files outside it are ignored                                               |
-| `pages`      | `string[]`                                              | `['src/pages']`    | Paths matched as pages (default export). Everything else in `watchDir` gets a named export. |
-| `extensions` | `string[]`                                              | `['.tsx', '.jsx']` | File extensions that trigger boilerplate generation                                         |
-| `ignore`     | `(string \| RegExp \| (filePath: string) => boolean)[]` | `[]`               | Paths to skip                                                                               |
+| Option       | Type                                                    | Default            | Description                                                                                       |
+| ------------ | ------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------- |
+| `watchDir`   | `string`                                                | `'src'`            | Base directory — files outside it are ignored                                                     |
+| `pages`      | `string[]`                                              | —                  | Subdirs relative to `watchDir` treated as pages (default export). Omit to get named exports only. |
+| `extensions` | `string[]`                                              | `['.tsx', '.jsx']` | File extensions that trigger boilerplate generation                                               |
+| `ignore`     | `(string \| RegExp \| (filePath: string) => boolean)[]` | `[]`               | Paths to skip                                                                                     |
 
 ## Generated templates
 
-**Page** (`src/pages/**`):
+**Page** (e.g. `pages/Home.tsx` when `watchDir: 'src'` and `pages: ['pages']`):
 
 ```tsx
 const PageName = () => {
@@ -75,7 +80,7 @@ const PageName = () => {
 export default PageName;
 ```
 
-**Component** (`src/**`):
+**Component** (everything else inside `watchDir`):
 
 ```tsx
 const ComponentName = () => {

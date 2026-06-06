@@ -1,7 +1,6 @@
 import path from 'path';
 
 export const defaultWatchDir = 'src';
-export const defaultPages = ['src/pages'];
 
 export const defaultComponentName = (filePath: string): string => {
     const fileName = path.basename(filePath, path.extname(filePath));
