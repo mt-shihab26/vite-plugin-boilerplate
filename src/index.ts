@@ -1,5 +1,5 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from 'fs';
+import path from 'path';
 
 import type { Plugin } from 'vite';
 
@@ -15,6 +15,11 @@ export interface VitePluginBoilerplateOptions {
     extensions?: string[];
 
     /**
+     * Paths to ignore. Supports strings (substring match), RegExp, or predicate functions.
+     */
+    ignore?: (string | RegExp | ((filePath: string) => boolean))[];
+
+    /**
      * Rules evaluated in order — first match wins.
      * Defaults to: pages/ → default export, everything else → named export.
      */
@@ -27,7 +32,7 @@ export interface VitePluginBoilerplateOptions {
     getComponentName?: (filePath: string) => string;
 }
 
-function defaultComponentName(filePath: string): string {
+const defaultComponentName = (filePath: string): string => {
     const fileName = path.basename(filePath, path.extname(filePath));
     const name = fileName === 'index' ? path.basename(path.dirname(filePath)) : fileName;
 
@@ -35,9 +40,9 @@ function defaultComponentName(filePath: string): string {
         .split(/[-_]/)
         .map((part: string) => part.charAt(0).toUpperCase() + part.slice(1))
         .join('');
-}
+};
 
-function matchesRule(rule: BoilerplateRule, filePath: string): boolean {
+const matchesRule = (rule: BoilerplateRule, filePath: string): boolean => {
     const { match } = rule;
 
     if (typeof match === 'string') {
@@ -49,16 +54,22 @@ function matchesRule(rule: BoilerplateRule, filePath: string): boolean {
     }
 
     return match(filePath);
-}
+};
 
-function applyTemplate(
-    rule: BoilerplateRule,
-    componentName: string,
-    filePath: string,
-): string {
+const applyTemplate = (rule: BoilerplateRule, componentName: string, filePath: string): string => {
     const { template } = rule;
     return typeof template === 'string' ? template : template(componentName, filePath);
-}
+};
+
+const isIgnored = (
+    filePath: string,
+    ignore: (string | RegExp | ((filePath: string) => boolean))[],
+): boolean =>
+    ignore.some((pattern) => {
+        if (typeof pattern === 'string') return filePath.includes(pattern);
+        if (pattern instanceof RegExp) return pattern.test(filePath);
+        return pattern(filePath);
+    });
 
 export const defaultRules: BoilerplateRule[] = [
     {
@@ -93,9 +104,10 @@ export const defaultRules: BoilerplateRule[] = [
     },
 ];
 
-export function viteBoilerplate(options: VitePluginBoilerplateOptions = {}): Plugin {
+export const viteBoilerplate = (options: VitePluginBoilerplateOptions = {}): Plugin => {
     const {
         extensions = ['.tsx', '.jsx'],
+        ignore = [],
         rules = defaultRules,
         getComponentName = defaultComponentName,
     } = options;
@@ -108,23 +120,18 @@ export function viteBoilerplate(options: VitePluginBoilerplateOptions = {}): Plu
         name: 'vite-boilerplate',
         configureServer(server) {
             server.watcher.on('add', (filePath: string) => {
-                if (!extPattern.test(filePath)) {
-                    return;
-                }
+                if (!extPattern.test(filePath)) return;
+                if (ignore.length > 0 && isIgnored(filePath, ignore)) return;
 
                 try {
                     const stats = fs.statSync(filePath);
 
-                    if (stats.size > 0) {
-                        return;
-                    }
+                    if (stats.size > 0) return;
 
                     const componentName = getComponentName(filePath);
                     const rule = rules.find((r) => matchesRule(r, filePath));
 
-                    if (!rule) {
-                        return;
-                    }
+                    if (!rule) return;
 
                     fs.writeFileSync(filePath, applyTemplate(rule, componentName, filePath), 'utf-8');
                 } catch {
@@ -133,4 +140,4 @@ export function viteBoilerplate(options: VitePluginBoilerplateOptions = {}): Plu
             });
         },
     };
-}
+};

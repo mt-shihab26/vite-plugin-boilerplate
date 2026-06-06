@@ -42,6 +42,13 @@ viteBoilerplate({
   // File extensions to watch. Default: ['.tsx', '.jsx']
   extensions: ['.tsx', '.jsx'],
 
+  // Paths to ignore. Supports string (substring), RegExp, or predicate.
+  ignore: [
+    'node_modules',
+    /\.stories\./,
+    (filePath) => filePath.includes('__mocks__'),
+  ],
+
   // Rules evaluated in order — first match wins.
   rules: [
     {
