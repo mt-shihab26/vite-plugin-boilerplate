@@ -14,7 +14,17 @@ A Vite plugin that automatically writes component boilerplate when you create a 
 
 ```bash
 npm install -D vite-plugin-boilerplate
-# or
+```
+
+```bash
+yarn add -D vite-plugin-boilerplate
+```
+
+```bash
+pnpm add -D vite-plugin-boilerplate
+```
+
+```bash
 bun add -D vite-plugin-boilerplate
 ```
 
