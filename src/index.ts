@@ -2,14 +2,13 @@ import fs from 'fs';
 import path from 'path';
 
 import type { Plugin, ResolvedConfig } from 'vite';
-
 export type { VitePluginBoilerplateOptions } from './types';
-
 import type { VitePluginBoilerplateOptions } from './types';
+
 import { componentTemplate, defaultComponentName, pageTemplate } from './defaults';
 import { isIgnored, matchesPaths, readGitignorePatterns } from './utils';
 
-export const viteBoilerplate = (options: VitePluginBoilerplateOptions): Plugin => {
+export const boilerplate = (options: VitePluginBoilerplateOptions): Plugin => {
     const { watchDir, pages, extensions = ['.tsx', '.jsx'], ignore = [] } = options;
 
     const extPattern = new RegExp(`(${extensions.map((e) => e.replace('.', '\\.')).join('|')})$`);

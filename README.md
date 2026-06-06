@@ -26,10 +26,10 @@ bun add -D vite-plugin-boilerplate
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite';
-import { viteBoilerplate } from 'vite-plugin-boilerplate';
+import { boilerplate } from 'vite-plugin-boilerplate';
 
 export default defineConfig({
-    plugins: [viteBoilerplate({ watchDir: 'src' })],
+    plugins: [boilerplate({ watchDir: 'src' })],
 });
 ```
 
@@ -45,7 +45,7 @@ The component name is derived from the filename in PascalCase. For `index` files
 ## Options
 
 ```ts
-viteBoilerplate({
+boilerplate({
     // Base directory to watch (required)
     watchDir: 'src',
 
