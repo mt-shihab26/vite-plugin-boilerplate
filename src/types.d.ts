@@ -1,16 +1,15 @@
 export type VitePluginBoilerplateOptions = {
     /**
      * Base directory to watch. Files outside this directory are ignored.
-     * Defaults to 'src'.
      */
-    watchDir?: string;
+    watchDir: string;
 
     /**
-     * Subdirectories (relative to watchDir) treated as pages — generates a default export.
+     * Subdirectory or subdirectories (relative to watchDir) treated as pages — generates a default export.
      * Files inside watchDir that don't match any page path get a named export.
      * If not provided, all files get a named export.
      */
-    pages?: string[];
+    pages?: string | string[];
 
     /**
      * File extensions to watch. Defaults to ['.tsx', '.jsx'].

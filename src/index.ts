@@ -6,19 +6,15 @@ import type { Plugin, ResolvedConfig } from 'vite';
 export type { VitePluginBoilerplateOptions } from './types';
 
 import type { VitePluginBoilerplateOptions } from './types';
-import { componentTemplate, defaultComponentName, defaultWatchDir, pageTemplate } from './defaults';
+import { componentTemplate, defaultComponentName, pageTemplate } from './defaults';
 import { isIgnored, matchesPaths, readGitignorePatterns } from './utils';
 
-export const viteBoilerplate = (options: VitePluginBoilerplateOptions = {}): Plugin => {
-    const {
-        watchDir = defaultWatchDir,
-        pages = [],
-        extensions = ['.tsx', '.jsx'],
-        ignore = [],
-    } = options;
+export const viteBoilerplate = (options: VitePluginBoilerplateOptions): Plugin => {
+    const { watchDir, pages, extensions = ['.tsx', '.jsx'], ignore = [] } = options;
 
     const extPattern = new RegExp(`(${extensions.map((e) => e.replace('.', '\\.')).join('|')})$`);
-    const resolvedPages = pages.map((p) => path.join(watchDir, p));
+    const pageList = pages === undefined ? [] : Array.isArray(pages) ? pages : [pages];
+    const resolvedPages = pageList.map((p) => path.join(watchDir, p));
 
     let gitignorePatterns: string[] = [];
 

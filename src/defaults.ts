@@ -1,7 +1,5 @@
 import path from 'path';
 
-export const defaultWatchDir = 'src';
-
 export const defaultComponentName = (filePath: string): string => {
     const fileName = path.basename(filePath, path.extname(filePath));
     const name = fileName === 'index' ? path.basename(path.dirname(filePath)) : fileName;
