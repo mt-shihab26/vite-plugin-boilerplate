@@ -1,14 +1,12 @@
 import fs from 'fs';
 
 import type { Plugin } from 'vite';
+export type { BoilerplateRule, VitePluginBoilerplateOptions } from './types';
+import type { VitePluginBoilerplateOptions } from './types';
 
 import { defaultComponentName, defaultRules } from './defaults';
 import { applyTemplate, isIgnored, matchesRule } from './utils';
-
-export type { BoilerplateRule, VitePluginBoilerplateOptions } from './types';
 export { defaultRules } from './defaults';
-
-import type { VitePluginBoilerplateOptions } from './types';
 
 export const viteBoilerplate = (options: VitePluginBoilerplateOptions = {}): Plugin => {
     const {
