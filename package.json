@@ -1,7 +1,7 @@
 {
     "name": "vite-plugin-boilerplate",
     "version": "0.1.0",
-    "description": "Vite plugin that generates React boilerplate for new JSX/TSX files",
+    "description": "A Vite plugin that automatically generates React component boilerplate when you create a new .tsx or .jsx file.",
     "type": "module",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
