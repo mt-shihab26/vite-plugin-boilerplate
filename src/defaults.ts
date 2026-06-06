@@ -27,3 +27,14 @@ export const componentTemplate = (name: string, relPath: string): string =>
         `};`,
         ``,
     ].join('\n');
+
+export const vueTemplate = (relPath: string): string =>
+    [
+        `<script setup lang="ts">`,
+        `</script>`,
+        ``,
+        `<template>`,
+        `    <div>Edit: \`${relPath}\`</div>`,
+        `</template>`,
+        ``,
+    ].join('\n');

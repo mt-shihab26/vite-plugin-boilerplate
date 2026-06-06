@@ -7,7 +7,7 @@
 [![types](https://img.shields.io/npm/types/vite-plugin-boilerplate?style=flat-square)](https://www.npmjs.com/package/vite-plugin-boilerplate)
 [![npmx](https://img.shields.io/badge/npmx-vite--plugin--boilerplate-blue?style=flat-square)](https://npmx.dev/package/vite-plugin-boilerplate)
 
-A Vite plugin that automatically generates React component boilerplate when you create a new `.tsx` or `.jsx` file.
+A Vite plugin that automatically generates component boilerplate when you create a new `.tsx`, `.jsx`, or `.vue` file.
 
 ## Install
 
@@ -33,11 +33,12 @@ export default defineConfig({
 });
 ```
 
-When you create a new empty `.tsx` or `.jsx` file inside `watchDir`, the plugin writes a component stub:
+When you create a new empty `.tsx`, `.jsx`, or `.vue` file inside `watchDir`, the plugin writes a component stub:
 
+- `.vue` files get a `<script setup lang="ts">` SFC template
 - Files matching a **`pages`** path (relative to `watchDir`) get a **default export**
-- All other files inside `watchDir` get a **named export**
-- If `pages` is not set, every file gets a **named export**
+- All other `.tsx`/`.jsx` files inside `watchDir` get a **named export**
+- If `pages` is not set, every `.tsx`/`.jsx` file gets a **named export**
 - Paths listed in `.gitignore` are automatically skipped
 
 The component name is derived from the filename in PascalCase. For `index` files, the parent directory name is used instead.
@@ -52,8 +53,8 @@ boilerplate({
     // Subdir(s) relative to watchDir treated as pages — default export. Accepts a string or string[]. Omit for named exports only.
     pages: 'pages', // or pages: ['pages', 'views']
 
-    // File extensions to watch. Default: ['.tsx', '.jsx']
-    extensions: ['.tsx', '.jsx'],
+    // File extensions to watch. Default: ['.tsx', '.jsx']. Add '.vue' for Vue support.
+    extensions: ['.tsx', '.jsx', '.vue'],
 
     // Paths to ignore. Supports string (substring), RegExp, or predicate.
     ignore: ['node_modules', /\.stories\./, (filePath) => filePath.includes('__mocks__')],
@@ -87,4 +88,15 @@ export default Home;
 export const MyButton = () => {
     return <div>Edit: `src/components/my-button.tsx`</div>;
 };
+```
+
+**Vue SFC** (e.g. `src/components/my-button.vue` when `watchDir: 'src'`):
+
+```vue
+<script setup lang="ts">
+</script>
+
+<template>
+    <div>Edit: `src/components/my-button.vue`</div>
+</template>
 ```
