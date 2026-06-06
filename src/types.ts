@@ -1,9 +1,9 @@
-export interface BoilerplateRule {
+export type BoilerplateRule = {
     match: string | RegExp | ((filePath: string) => boolean);
     template: string | ((componentName: string, filePath: string) => string);
-}
+};
 
-export interface VitePluginBoilerplateOptions {
+export type VitePluginBoilerplateOptions = {
     /**
      * File extensions to watch. Defaults to ['.tsx', '.jsx'].
      */
@@ -25,4 +25,4 @@ export interface VitePluginBoilerplateOptions {
      * Defaults to PascalCase of the filename; index files use the parent directory name.
      */
     getComponentName?: (filePath: string) => string;
-}
+};
