@@ -1,4 +1,4 @@
-export type VitePluginBoilerplateOptions = {
+export type TOptions = {
     /**
      * Base directory to watch. Files outside this directory are ignored.
      */
